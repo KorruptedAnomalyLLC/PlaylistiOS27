@@ -178,7 +178,7 @@
                     <navigationItem key="navigationItem" title="(titleOfPlaylist)" id="MAy-I1-b8b">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="z0P-nt-6IW">
                             <connections>
-                                <action selector="addButtonTapped:" destination="DLR-gQ-z2v" id="RvH-aT-VYO"/>
+                                <action selector="addButtonTapped:" destination="DLR-gQ-z2v" id="sjQ-bL-0ey"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

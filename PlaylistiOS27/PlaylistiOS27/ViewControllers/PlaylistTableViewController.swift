@@ -17,12 +17,18 @@ class PlaylistTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     @IBAction func addButtonTapped(_ sender: Any) {
         guard let playlistName = playlistNameTextField.text,
             !playlistName.isEmpty else { return }
         
         PlaylistController.shared.createPlaylistWith(name: playlistName, andSongs: [])
         
+        playlistNameTextField.text = ""
         self.tableView.reloadData()
     
     }
@@ -50,9 +56,8 @@ class PlaylistTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            PlaylistController.shared.playlists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
@@ -63,7 +68,7 @@ class PlaylistTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         //        Identifier
-        if segue.identifier == "toSongController" {
+        if segue.identifier == "toSongTVController" {
             //        Index
             guard let indexPath = tableView.indexPathForSelectedRow,
                 
