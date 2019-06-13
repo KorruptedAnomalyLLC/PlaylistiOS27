@@ -55,8 +55,10 @@ class PlaylistTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            let playlist = PlaylistController.shared.playlists[indexPath.row]
+            PlaylistController.shared.deletePlaylist(playlistToDelete: playlist)
             // Delete the row from the data source
-            PlaylistController.shared.playlists.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }

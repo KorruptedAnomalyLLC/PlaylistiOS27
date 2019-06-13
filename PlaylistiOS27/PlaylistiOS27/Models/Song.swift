@@ -8,12 +8,20 @@
 
 import Foundation
 
-class Song {
+class Song: Codable {
     let name: String
     let artist: String
     
+    
+// Membertwise initializer/Designated intitalizer
     init(name: String, artist: String) {
         self.name = name
         self.artist = artist
+    }
+}
+
+extension Song: Equatable {
+    static func == (lhs: Song, rhs: Song) -> Bool {
+        return lhs.name == rhs.name && lhs.artist == rhs.artist
     }
 }

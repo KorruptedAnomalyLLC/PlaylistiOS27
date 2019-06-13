@@ -61,8 +61,12 @@ class SongTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            guard let playlist = playlistLandingPad else { return }
+            
+            let song = playlist.songs[indexPath.row]
             // Delete the row from the data source
-            playlistLandingPad?.songs.remove(at: indexPath.row)
+            PlaylistController.shared.removeSong(song: song, fromPlaylist: playlist)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
